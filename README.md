@@ -3,10 +3,12 @@ This repository setup a shell script that install ansible in a virtual environne
 
 
 ## Prerequisites
-[x] Linux basics commands
+
+- [x]Linux basics commands
 
 
 ## Usage
+
 1. clone the repository :
 ```bash
 git clone https://github.com/mansourka06/install_ansible_in_venv.git
@@ -22,7 +24,7 @@ sudo chmod +x install_ansible_in_venv.sh
 ./install_ansible_in_venv.sh
 ```
 
-⚠️ ATTENTION:
+⚠️ **ATTENTION:**
 The USER running the script must have sudo privileges
     
     
