@@ -25,8 +25,8 @@ sudo chmod +x install_ansible_in_venv.sh
 ```
 
 
-⚠️ **ATTENTION:**
-The USER running the script must have sudo privileges
+⚠️ **ATTENTION**
+- *The USER running the script must have sudo privileges*
     
 
 ## Author
