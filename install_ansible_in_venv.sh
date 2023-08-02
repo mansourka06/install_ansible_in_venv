@@ -1,36 +1,49 @@
 #!/bin/bash
+
+## ################################################################
+# Desc: This script installs Ansible in a virtual environnement 
+# Autor: Mansour KA      
+# Update: 01/08/23 add install for RedHat OS
 #
-##########################################################################
-# Descpt: This scritp install ansible in a virtual environnement 
-# Auhtor: Mansour KA   
-##########################################################################
-      
-# Begin
+##################################################################
 
-#set the virtual envrionnement name (put your venv name in this variable)
+# Init virtual environment variable name
 venv_name=venv
- 
-# 1- Install required packages 
-sudo apt-get update 
-sudo apt install python3-pip python3-venv
 
-# 2- Create the virutal environnement 
+# Check if the OS is Debian or Ubuntu
+if [ -x "$(command -v lsb_release)" ]; then
+  os_name=$(lsb_release -si)
+else
+  echo "Warning: lsb_release command not found.Your OS Distribution is RedHat"
+fi
+
+# 1- Update apt & Install dependance packages 
+if [[ "$os_name" == "Debian" || "$os_name" == "Ubuntu" ]]; then
+  sudo apt-get update 
+  sudo apt install python3 python3-pip python3-venv -y
+else
+  sudo yum apt-get update 
+  sudo yum apt install python3 python3-pip python3-venv -y
+fi
+
+# Create the virtual environment 
 python3 -m venv $venv_name
+# Activate the virtual environment
+source $venv_name/bin/activate
 
-# 3- Activate the virtual environnement
-source $venv_name/bin/activiate
-
-# 4- Install ansible
+# 3- Install ansible
 pip install ansible
-
-#if you want to install a specfic ansible version, uncomment the two following lines, and set your ansible version in ansible_version variable (example: ansible_version=2.7) 
-#ansible_version=2.9
-#pip install ansible==$ansible_version  
-
-# 5- add ansible lint : lint tool for Ansible playbooks
+# Add ansible lint: a linting tool for Ansible playbooks
 pip install "ansible-lint[yamllint]"
 
-# End
+# If you want to install a specific Ansible version, uncomment and modify the next line:
+# ansible_version=
+# pip install ansible==$ansible_version
+
+# check ansible installed version
+ansible  --version
+
+echo "Thank you for installing Ansible from my script ! MKA (°_°)"
 
 #------------------INFO------------------------------------------------
-#use logged with must have sudo permission to run correctly this script
+# The USER running the script must have sudo privileges
