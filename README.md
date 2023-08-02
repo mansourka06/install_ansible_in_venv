@@ -4,7 +4,7 @@ This repository setup a shell script that install ansible in a virtual environne
 
 ## Prerequisites
 
-- [x](Linux basics commands)
+- Linux basics commands
 
 
 ## Usage
